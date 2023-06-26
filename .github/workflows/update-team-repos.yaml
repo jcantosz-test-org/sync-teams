@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Sync team repositories
-        uses: jcantosz/update-teams/sync-repositories@v1
+        uses: jcantosz/update-teams/sync-repositories@main
         with:
           app_id: ${{ secrets.app_id }}
           private_key: ${{ secrets.private_key }}
