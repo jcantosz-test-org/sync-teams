@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  sync-repos:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,6 +18,23 @@ jobs:
 
       - name: Sync team repositories
         uses: jcantosz/update-teams/sync-repositories@main
+        with:
+          app_id: ${{ secrets.app_id }}
+          private_key: ${{ secrets.private_key }}
+          client_id: ${{ secrets.client_id }}
+          client_secret: ${{ secrets.client_secret }}
+          installation_id: ${{ secrets.installation_id }}
+          organization_name: "jcantosz-test-org"
+
+  sync-users:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Sync team repositories
+        uses: jcantosz/update-teams/sync-users@main
         with:
           app_id: ${{ secrets.app_id }}
           private_key: ${{ secrets.private_key }}
