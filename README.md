@@ -5,6 +5,6 @@ Run sync teams
 create teams/files
 
 ```
-mkdir {security-team,test,test-team}
-touch {security-team,test,test-team}/{repositories,users}
+mkdir {test,test-team}
+touch {test,test-team}/{repositories,users}
 ```
