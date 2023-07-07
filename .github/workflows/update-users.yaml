@@ -27,5 +27,14 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: Sync users from AAD
         uses: jcantosz/update-teams/aad-user-sync@feat/azure-ad
-        with:
-          dry_run: "true"
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "Group membership updates"
+          git push origin main
