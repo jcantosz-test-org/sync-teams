@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create teams from directories
-        uses: jcantosz/update-teams/create-teams-from-directories@v0.0.1
+        uses: jcantosz/update-teams/create-teams-from-directories@v0.0.2
         with:
           app_id: ${{ secrets.app_id }}
           private_key: ${{ secrets.private_key }}
@@ -26,7 +26,7 @@ jobs:
           organization_name: "jcantosz-test-org"
 
       - name: Sync team repositories
-        uses: jcantosz/update-teams/sync-users@v0.0.1
+        uses: jcantosz/update-teams/sync-users@v0.0.2
         with:
           app_id: ${{ secrets.app_id }}
           private_key: ${{ secrets.private_key }}

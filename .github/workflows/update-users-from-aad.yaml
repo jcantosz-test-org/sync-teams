@@ -26,7 +26,7 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: Sync users from AAD
-        uses: jcantosz/update-teams/aad-user-sync@v0.0.1
+        uses: jcantosz/update-teams/aad-user-sync@v0.0.2
       - name: setup git config
         run: |
           # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
@@ -36,5 +36,7 @@ jobs:
         run: |
           # Stage the file, commit and push
           git add .
-          git commit -m "Group membership updates"
-          git push origin main
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Group membership updates"
+            git push origin main
+          fi
