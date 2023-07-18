@@ -1,0 +1,68 @@
+name: Update teams from AAD groups
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: write # read is required for actions/checkout, write is required to create a release
+
+jobs:
+  sync-aad-usersrepos:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Sync users from AAD
+        uses: jcantosz/update-teams/aad-user-sync@v0.0.2
+
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "Group membership updates"
+            git push origin main
+          fi
+
+      - name: Create teams from directories
+        uses: jcantosz/update-teams/create-teams-from-directories@v0.0.2
+        with:
+          app_id: ${{ secrets.app_id }}
+          private_key: ${{ secrets.private_key }}
+          installation_id: ${{ secrets.installation_id }}
+          organization_name: "jcantosz-test-org"
+
+      - name: Sync team users
+        uses: jcantosz/update-teams/sync-users@v0.0.2
+        with:
+          app_id: ${{ secrets.app_id }}
+          private_key: ${{ secrets.private_key }}
+          installation_id: ${{ secrets.installation_id }}
+          organization_name: "jcantosz-test-org"
+
+      - name: Sync team repositories
+        uses: jcantosz/update-teams/sync-repositories@v0.0.2
+        with:
+          app_id: ${{ secrets.app_id }}
+          private_key: ${{ secrets.private_key }}
+          installation_id: ${{ secrets.installation_id }}
+          organization_name: "jcantosz-test-org"
