@@ -38,9 +38,9 @@ jobs:
       - name: Sync users from AAD
         uses: jcantosz/update-teams/aad-user-sync@v0.0.2
         env:
-          AZURE_TENANT_ID: "${{ secrets.AZURE_TENANT_ID2 }}"
-          AZURE_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID2 }}"
-          AZURE_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET2 }}"
+          AZURE_TENANT_ID: "${{ secrets.AZURE_TENANT_ID_2 }}"
+          AZURE_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID_2 }}"
+          AZURE_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET_2 }}"
         # uses: jcantosz/update-teams/aad-user-sync@main
       - name: setup git config
         run: |
