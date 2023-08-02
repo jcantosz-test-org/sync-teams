@@ -37,10 +37,10 @@ jobs:
       #     allow-no-subscriptions: true
       - name: Sync users from AAD
         uses: jcantosz/update-teams/aad-user-sync@v0.0.2
-        env:
-          AZURE_TENANT_ID: "${{ secrets.A_TID }}"
-          AZURE_CLIENT_ID: "${{ secrets.A_CID }}"
-          AZURE_CLIENT_SECRET: "${{ secrets.A_CS }}"
+        # env:
+        #   AZURE_TENANT_ID: "${{ secrets.A_TID }}"
+        #   AZURE_CLIENT_ID: "${{ secrets.A_CID }}"
+        #   AZURE_CLIENT_SECRET: "${{ secrets.A_CS }}"
         # uses: jcantosz/update-teams/aad-user-sync@main
       - name: setup git config
         run: |
