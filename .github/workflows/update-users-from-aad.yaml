@@ -36,7 +36,7 @@ jobs:
       #     # creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID_2 }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET_2 }}","tenantId":"${{ secrets.AZURE_TENANT_ID_2 }}"}'
       #     allow-no-subscriptions: true
       - name: Sync users from AAD
-        uses: jcantosz/update-teams/aad-user-sync@feat/group-by-id
+        uses: jcantosz/update-teams/aad-user-sync@main
         env:
           AZURE_TENANT_ID: "${{ secrets.MY_APP_TID }}"
           AZURE_CLIENT_ID: "${{ secrets.MY_APP_CID }}"
@@ -58,3 +58,10 @@ jobs:
             git commit -m "Group membership updates"
             git push origin main
           fi
+      - name: Create teams from directories
+        uses: jcantosz/update-teams/create-teams-from-directories@v0.0.2
+        with:
+          app_id: ${{ secrets.app_id }}
+          private_key: ${{ secrets.private_key }}
+          installation_id: ${{ secrets.installation_id }}
+          organization_name: "jcantosz-test-org"
