@@ -38,9 +38,9 @@ jobs:
       - name: Sync users from AAD
         uses: jcantosz/update-teams/aad-user-sync@feat/error-exit
         env:
-          AZURE_TENANT_ID: "${{ secrets.A_TID }}"
-          AZURE_CLIENT_ID: "${{ secrets.A_CID }}"
-          AZURE_CLIENT_SECRET: "${{ secrets.A_CS }}"
+          AZURE_TENANT_ID: "${{ secrets.MY_APP_TID }}"
+          AZURE_CLIENT_ID: "${{ secrets.MY_APP_CID }}"
+          AZURE_CLIENT_SECRET: "${{ secrets.MY_APP_CS }}"
           # AZURE_TENANT_ID: "${{ secrets.AZURE_TENANT_ID_2 }}"
           # AZURE_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID_2 }}"
           # AZURE_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET_2 }}"
