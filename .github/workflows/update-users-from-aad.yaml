@@ -36,7 +36,7 @@ jobs:
       #     # creds: '{"clientId":"${{ secrets.AZURE_CLIENT_ID_2 }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET_2 }}","tenantId":"${{ secrets.AZURE_TENANT_ID_2 }}"}'
       #     allow-no-subscriptions: true
       - name: Sync users from AAD
-        uses: jcantosz/update-teams/aad-user-sync@vfeat/error-exit
+        uses: jcantosz/update-teams/aad-user-sync@feat/error-exit
         env:
           AZURE_TENANT_ID: "${{ secrets.A_TID }}"
           AZURE_CLIENT_ID: "${{ secrets.A_CID }}"
