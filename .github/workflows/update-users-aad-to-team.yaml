@@ -44,7 +44,7 @@ jobs:
           fi
 
       - name: Create teams from directories
-        uses: jcantosz/update-teams/create-teams-from-directories@v0.0.2
+        uses: jcantosz/update-teams/create-teams-from-directories@main
         with:
           app_id: ${{ secrets.app_id }}
           private_key: ${{ secrets.private_key }}
@@ -52,7 +52,7 @@ jobs:
           organization_name: "jcantosz-test-org"
 
       - name: Sync team users
-        uses: jcantosz/update-teams/sync-users@v0.0.2
+        uses: jcantosz/update-teams/sync-users@main
         with:
           app_id: ${{ secrets.app_id }}
           private_key: ${{ secrets.private_key }}
@@ -60,7 +60,7 @@ jobs:
           organization_name: "jcantosz-test-org"
 
       - name: Sync team repositories
-        uses: jcantosz/update-teams/sync-repositories@v0.0.2
+        uses: jcantosz/update-teams/sync-repositories@main
         with:
           app_id: ${{ secrets.app_id }}
           private_key: ${{ secrets.private_key }}
