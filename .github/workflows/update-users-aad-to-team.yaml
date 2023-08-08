@@ -20,14 +20,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: "Az CLI login"
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       - name: Sync users from AAD
         uses: jcantosz/update-teams/aad-user-sync@main
+        env:
+          AZURE_TENANT_ID: "${{ secrets.MY_APP_TID }}"
+          AZURE_CLIENT_ID: "${{ secrets.MY_APP_CID }}"
+          AZURE_CLIENT_SECRET: "${{ secrets.MY_APP_CS }}"
 
       - name: setup git config
         run: |
